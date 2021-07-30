@@ -24,8 +24,12 @@ const database ={
         {id:4, tech:"Ultra Package (includes navigation and visibility packages)", price: 1500},
     ],
     customCarOrders: [
-        {id: 1, paintColorId:1,wheelId:1,interiorSeatId:1,technologyId:1         }
-    ]
+        {id: 1, paintColorId:1,wheelId:1,interiorSeatId:1,technologyId:1 }
+    ],
+    orderBuilder: {
+
+    }
+    
 
 
 }
@@ -47,4 +51,17 @@ export const getInteriorSeats = () => {
 }
 export const getCustomCarOrders = () => {
     return database.customCarOrders.map(customCarOrder => ({ ...customCarOrder }))
+}
+
+export const setPaintColors = (id) => {
+    database.orderBuilder.paintColorId = id
+}
+export const setWheels = (id) => {
+    database.orderBuilder.wheelId = id
+}
+export const setTechnology = (id) => {
+    database.orderBuilder.technologyId = id
+}
+export const setInteriorSeats = (id) => {
+    database.orderBuilder.interiorSeatId = id
 }
