@@ -24,7 +24,7 @@ const database ={
         {id:4, tech:"Ultra Package (includes navigation and visibility packages)", price: 1500},
     ],
     customCarOrders: [
-        {id: 1, paintColorId:1,wheelId:1,interiorSeatId:1,technologyId:1, timestamp: 1614659931693}
+        //{id: 1, paintColorId:1,wheelId:1,interiorSeatId:1,technologyId:1, timestamp: 1614659931693}
     ],
     orderBuilder: {
 
@@ -71,8 +71,16 @@ export const addCustomOrder = () => {
     const newOrder = { ...database.orderBuilder }
 
     // Add a new primary key to the object
-    const lastIndex = database.customCarOrders.length - 1
-    newOrder.id = database.customCarOrders[lastIndex].id + 1
+
+    let lastIndex = database.customCarOrders.length - 1
+    if(lastIndex === -1){
+        lastIndex = 0
+        newOrder.id = 1
+    }else{
+        newOrder.id = database.customCarOrders[lastIndex].id + 1
+    }
+
+    //newOrder.id = database.customCarOrders[lastIndex].id + 1
 
     // Add a timestamp to the order
     newOrder.timestamp = Date.now()
