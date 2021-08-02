@@ -1,11 +1,14 @@
-import { getPaintColors } from "./database.js";
+import { getPaintColors,setPaintColors } from "./database.js";
 
 const paintColors = getPaintColors();
+
 document.addEventListener(
-    "click",
-    (clickEvent)=>{
-        if(clickEvent.target.name === "paint"){
-            window.alert(`The user choose option :${clickEvent.target.value}`)
+    "change",
+    (changedEvent)=>{
+        if(changedEvent.target.name === "paint"){
+            setPaintColors(parseInt(changedEvent.target.value))
+          
+           
         }
     }
 )
