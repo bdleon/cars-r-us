@@ -1,12 +1,12 @@
-import { getWheels } from "./database.js";
+import { getWheels,  setWheels } from "./database.js";
 
 const wheels = getWheels();
 
 document.addEventListener(
-    "click",
-    (clickEvent)=>{
-        if(clickEvent.target.name === "wheel"){
-            window.alert(`The user choose option :${clickEvent.target.value}`)
+    "change",
+    (changedEvent)=>{
+        if(changedEvent.target.name === "wheel"){
+            setWheels(parseInt(changedEvent.target.value))
         }
     }
 )

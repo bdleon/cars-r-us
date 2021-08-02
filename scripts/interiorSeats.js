@@ -1,13 +1,13 @@
-import { getInteriorSeats } from "./database.js";
+import { getInteriorSeats,setInteriorSeats } from "./database.js";
 
 const interiorSeats = getInteriorSeats();
 
 
 document.addEventListener(
-    "click",
-    (clickEvent)=>{
-        if(clickEvent.target.name === "seat"){
-            window.alert(`The user choose option :${clickEvent.target.value}`)
+    "change",
+    (changedEvent)=>{
+        if(changedEvent.target.name === "seat"){
+            setInteriorSeats(parseInt(changedEvent.target.value))
         }
     }
 )

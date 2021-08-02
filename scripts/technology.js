@@ -1,12 +1,13 @@
-import { getTechnology } from "./database.js";
+import { getTechnology, setTechnology } from "./database.js";
 
 const technology = getTechnology();
 
+
 document.addEventListener(
-    "click",
-    (clickEvent)=>{
-        if(clickEvent.target.name === "tech"){
-            window.alert(`The user choose option :${clickEvent.target.value}`)
+    "change",
+    (changedEvent)=>{
+        if(changedEvent.target.name === "tech"){
+            setTechnology(parseInt(changedEvent.target.value))
         }
     }
 )
