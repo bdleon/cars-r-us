@@ -24,7 +24,7 @@ const database ={
         {id:4, tech:"Ultra Package (includes navigation and visibility packages)", price: 1500},
     ],
     customCarOrders: [
-        {id: 1, paintColorId:1,wheelId:1,interiorSeatId:1,technologyId:1 }
+        {id: 1, paintColorId:1,wheelId:1,interiorSeatId:1,technologyId:1, timestamp: 1614659931693}
     ],
     orderBuilder: {
 
@@ -64,4 +64,25 @@ export const setTechnology = (id) => {
 }
 export const setInteriorSeats = (id) => {
     database.orderBuilder.interiorSeatId = id
+}
+
+export const addCustomOrder = () => {
+    // Copy the current state of user choices
+    const newOrder = { ...database.orderBuilder }
+
+    // Add a new primary key to the object
+    const lastIndex = database.customCarOrders.length - 1
+    newOrder.id = database.customCarOrders[lastIndex].id + 1
+
+    // Add a timestamp to the order
+    newOrder.timestamp = Date.now()
+
+    // Add the new order object to custom orders state
+    database.customCarOrders.push(newOrder)
+
+    // Reset the temporary state for user choices
+    database.orderBuilder = {}
+
+    // Broadcast a notification that permanent state has changed
+    document.dispatchEvent(new CustomEvent("stateChanged"))
 }
